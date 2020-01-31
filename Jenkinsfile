@@ -4,11 +4,31 @@ pipeline {
       stage('build') {
         steps {
           sh 'npm --version'
-          sh 'echo "Hello World"'
+          sh 'echo "Building"'
           sh '''
               echo "Multiline shell steps works too"
               ls -lah
           '''
+        }
+      }
+      stage('test') {
+        steps {
+          sh 'echo "Testing"'
+        }
+      }
+      stage('deploy - staging') {
+        steps {
+          sh 'echo "Deploy - Staging"'
+        }
+      }
+      stage('sanity check') {
+        steps {
+          input 'Does this look ok?'
+        }
+      }
+      stage('deploy - production') {
+        steps {
+          sh 'echo "Deploy - Production"'
         }
       }
     }
